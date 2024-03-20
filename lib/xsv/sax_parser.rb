@@ -24,7 +24,7 @@ module Xsv
       loop do
         if must_read
           begin
-            pbuf << io.sysread(2048)
+            pbuf.concat(io.sysread(2048))
           rescue EOFError, TypeError
             # EOFError is thrown by IO, rubyzip returns nil from sysread on EOF
             eof_reached = true
